@@ -155,14 +155,6 @@ export default function Login() {
             </motion.form>
           </AnimatePresence>
 
-          {/* Demo hint */}
-          <div className="mt-5 p-3 bg-[#22c55e]/5 border border-[#22c55e]/20 rounded-xl">
-            <p className="text-xs text-gray-500 text-center">
-              <span className="text-[#22c55e] font-bold">Demo admin:</span> admin@ailearn.com / admin123
-            </p>
-          </div>
-        </div>
-
         {/* Features */}
         <div className="mt-6 grid grid-cols-3 gap-3">
           {[
