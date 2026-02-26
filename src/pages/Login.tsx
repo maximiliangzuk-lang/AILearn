@@ -1,8 +1,9 @@
+import { supabase } from '../lib/supabase';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useStore } from '../lib/store';
 import { useNavigate } from 'react-router-dom';
 import { Eye, EyeOff, Zap, Brain } from 'lucide-react';
+
 
 export default function Login() {
   const [mode, setMode] = useState<'login' | 'register'>('login');
@@ -13,17 +14,43 @@ export default function Login() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const { login, register } = useStore();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     setLoading(true);
-    await new Promise(r => setTimeout(r, 600));
 
     if (mode === 'login') {
-      const result = login(email, password);
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+      
+      if (error) setError(error.message);
+      else navigate('/learn');
+
+    } else {
+      if (!username.trim()) {
+        setError('Username required');
+        setLoading(false);
+        return;
+      }
+
+      const { error } = await supabase.auth.signUp({
+        email,
+        password,
+      });
+
+      if (error) setError(error.message);
+      else navigate('/learn');
+    }
+
+    setLoading(false);
+  };
+
+if (error) setError(error.message);
+else navigate('/learn');
       if (result.success) navigate('/learn');
       else setError(result.error || 'Login failed');
     } else {
