@@ -154,7 +154,7 @@ export default function Login() {
               </motion.button>
             </motion.form>
           </AnimatePresence>
-
+          </div>
         {/* Features */}
         <div className="mt-6 grid grid-cols-3 gap-3">
           {[
