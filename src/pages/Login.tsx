@@ -30,7 +30,8 @@ export default function Login() {
       if (error) setError(error.message);
       else navigate('/learn');
 
-    } else {
+    } 
+    else {
       if (!username.trim()) {
         setError('Username required');
         setLoading(false);
@@ -46,19 +47,6 @@ export default function Login() {
       else navigate('/learn');
     }
 
-    setLoading(false);
-  };
-
-if (error) setError(error.message);
-else navigate('/learn');
-      if (result.success) navigate('/learn');
-      else setError(result.error || 'Login failed');
-    } else {
-      if (!username.trim()) { setError('Username required'); setLoading(false); return; }
-      const result = register(username, email, password);
-      if (result.success) navigate('/learn');
-      else setError(result.error || 'Registration failed');
-    }
     setLoading(false);
   };
 
